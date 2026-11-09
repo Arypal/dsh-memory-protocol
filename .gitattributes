@@ -1,0 +1,9 @@
+# 统一行尾，避免跨平台 clone 后脚本行为不一致
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.png binary
+*.jpg binary
+*.onnx binary
+*.mbk binary

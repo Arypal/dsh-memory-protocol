@@ -1,0 +1,33 @@
+# ── 记忆库与运行时产物（绝不入库）──
+memory.db
+memory.db-*
+memory.db_chroma/
+*.mbk
+backups/
+master.key
+paused.json
+runtime/
+*.log
+tool_calls.log
+guard-audit.log
+
+# ── 示例库（本地生成，不提交）──
+samples/*.db
+samples/*.db_chroma/
+samples/distill_state.json
+
+# ── Python ──
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.bak
+*.bak-preP0
+
+# ── Node / 编辑器 ──
+node_modules/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

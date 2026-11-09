@@ -1,0 +1,53 @@
+# dsh-memory-protocol 0.4.1 — 记忆协议插件（bundle 层）
+#
+# 两个 entry：
+#   1. memory-mcp  — 通过官方 @deepseek-ai/dsh-mcp-client 桥接内置的
+#                    Python MCP server（python/memory_skill，随插件分发）
+#   2. memory-protocol — 每轮自动 memory_weave 注入、turn-stopping 分角色
+#                    ingest；协议门自 0.4.1 起为软提醒，不再拒绝工具调用
+#
+# 0.4.0 起不再依赖 `pip install memory-skill`：后端由 scripts/run-mcp.cjs 通过
+# PYTHONPATH 前置加载插件自带的 python/memory_skill（改造版：事实卡 L1 +
+# 证据时间线 L2 + 事实优先检索）。site-packages 里的同名包会被遮蔽。
+#
+# 路径与环境变量：
+#   MEMORY_SKILL_PYTHON   — 解释器路径（默认探测 python3 → python → py）
+#   MEMORY_SKILL_DIR      — 项目目录（默认 process.cwd()）
+#   MEMORY_SKILL_DB_PATH  — 记忆库路径（默认 <DSH_HOME>/memory/memory.db）
+#   MEMORY_MODEL_PATH     — 嵌入模型目录（未设时自动探测 model.onnx）
+#   MEMORY_PROTOCOL_BACKEND=installed — 强制改用 site-packages 后端（排障）
+#   IMPORTANCE_API_KEY    — LLM 重要性评分 key（可选）
+#
+# 运行时依赖（mcp / chromadb / onnxruntime / numpy / jieba）需已装在解释器里；
+# 缺什么用 `node scripts/doctor.mjs` 查，脚本 fail-open、永远 exit 0。
+
+- insert:
+    - id: memory-mcp
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: opencode_memory
+        transport: stdio
+        # 不再裸 python3（会被 PATH 劫持到 conda/venv/WindowsApps stub）——
+        # 走 node 包装脚本：python-resolve.cjs 解析真实解释器 + 透传 stdio。
+        # baseUrl = profile 目录（loader ctx 注入，file:// URL 形式），不能依赖 process.cwd()（启动目录）。
+        # 修复要点（Windows）：
+        #   1. 中文用户名会被 pathToFileURL URL 编码（file:///C:/Users/%E5%BC%A0%E4%B8%89/），
+        #      必须 decodeURIComponent 还原，否则 Node require/spawn 报 MODULE_NOT_FOUND / EPERM。
+        #   2. slice(7) 后是 /C:/Users/...（前导斜杠 + 盘符），Windows 上 /C:/ 会被解析成
+        #      当前盘根下的 C: 目录（形如 C:\C:\Users\... 的双盘符）——必须剥掉盘符前的前导斜杠。
+        #      Linux 的 /home/... 是绝对路径，保持原样。
+        command: !!js process.execPath
+        args:
+          - !!js (() => { let p = decodeURIComponent(baseUrl).slice(7); if (process.platform === 'win32' && /^\/[A-Za-z]:/.test(p)) p = p.slice(1); return p + 'node_modules/dsh-memory-protocol/scripts/run-mcp.cjs'; })()
+        cwd: !!js process.env.MEMORY_SKILL_DIR ?? process.cwd()
+        toolCallTimeoutMs: 60000
+        failOnStartupError: false
+        reconnect:
+          enabled: true
+    - id: memory-protocol
+      name: dsh-memory-protocol
+      config:
+        enforceWeave: true
+        injectWeave: true
+        autoIngest: true
+        allowlist: []

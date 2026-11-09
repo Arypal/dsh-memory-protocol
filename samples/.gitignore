@@ -1,0 +1,5 @@
+# samples 只提交生成器与说明；库、索引、key、日志都在本机生成
+*
+!.gitignore
+!README.md
+!make_sample_db.py

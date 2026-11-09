@@ -1,0 +1,82 @@
+{
+  "name": "dsh-memory-protocol",
+  "description": "DeepSeek Harness 长期记忆插件：事实卡 L1 + 证据时间线 L2 + 对话流水 L3 + 区间摘要 L4，21 个 MCP 工具，每轮自动注入/入库，本地嵌入与 AES-256-GCM 字段加密。",
+  "version": "0.4.1",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": "./client/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/index.d.ts",
+    "cordis.patch.yml",
+    "python/memory_skill",
+    "scripts/bootstrap-memory.mjs",
+    "scripts/python-resolve.cjs",
+    "scripts/run-mcp.cjs",
+    "scripts/doctor.mjs",
+    "test/smoke-mcp.mjs",
+    "test/regress-10.mjs",
+    "client/client.js",
+    "README.md",
+    "README.en.md",
+    "LICENSE",
+    "requirements.txt",
+    "samples",
+    "tools",
+    "docs"
+  ],
+  "scripts": {
+    "bootstrap": "node scripts/bootstrap-memory.mjs",
+    "doctor": "node scripts/doctor.mjs",
+    "smoke": "node test/smoke-mcp.mjs"
+  },
+  "license": "MIT",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "memory",
+    "mcp",
+    "fact-card"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots"
+      ],
+      "platform": "web"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "*",
+    "@deepseek-ai/schemastery": "*",
+    "@deepseek-ai/dsh-agent": "*",
+    "@deepseek-ai/dsh-llm": "*",
+    "@deepseek-ai/dsh-session": "*",
+    "@deepseek-ai/dsh-tools": "*"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "*",
+    "@deepseek-ai/schemastery": "*",
+    "@deepseek-ai/dsh-agent": "*",
+    "@deepseek-ai/dsh-llm": "*",
+    "@deepseek-ai/dsh-session": "*",
+    "@deepseek-ai/dsh-tools": "*",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
