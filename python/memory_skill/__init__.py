@@ -1,3 +1,6 @@
+# Modified by dsh-memory-protocol contributors, 2026.
+# Derived from baaai123/solo-memory ("memory-skill"), Apache License 2.0.
+# See NOTICE at the repository root for the list of modifications.
 """Memory Skill — lightweight, real-time, self-evolving Agent memory module."""
 
 # Version is read dynamically from package metadata so it can never drift

@@ -1,0 +1,43 @@
+dsh-memory-protocol
+Copyright 2026 dsh-memory-protocol contributors
+
+================================================================================
+This product includes software developed at
+    baaai123/solo-memory  (https://github.com/baaai123/solo-memory)
+    distributed on PyPI as "memory-skill" (upstream version 0.7.x)
+    Copyright 2026 Memory Skill Contributors
+    Licensed under the Apache License, Version 2.0.
+
+The bundled derivative under python/memory_skill/ has been MODIFIED by the
+dsh-memory-protocol contributors. Every file in that directory is a modified
+version of the upstream source.
+
+Summary of modifications
+------------------------
+1.  Memory model extended with fact cards (L1: facts / fact_history) and an
+    evidence timeline (L2: fact_evidence) plus a cross-language alias index.
+2.  Scope partitioning (world / web / platform / topic:<name> / file:<path> /
+    session:<name>) with automatic scope bindings on write.
+3.  Retrieval: fact-card precedence, meta-memory isolation (lesson / topic /
+    context excluded from general search), question de-weighting restricted to
+    strong alias hits, RRF leg weights adjusted (alias 3.5 / BM25 2.5 /
+    semantic 0.5 / temporal 0.5) and a dedicated skill leg (weight 2.0).
+4.  Protocol gate downgraded from hard denial to advisory reminders; weave no
+    longer performs write side effects; turn ingestion split by role.
+5.  MCP tool surface extended from 15 to 21 tools (fact cards, learning queue,
+    pending review, episodes, channel toggle).
+6.  Field-level AES-256-GCM encryption with GCM integrity reporting, plus
+    key rotation and plaintext-to-ciphertext migration tooling.
+7.  L3 retention policy (TTL + row cap) with L4 episode summaries, a trash
+    table, and pruning that never silently drops evidence.
+8.  Memory tree (branch x date x period), capability registry, persistent
+    learning queue and pending-candidate store.
+9.  Host integration layer for DeepSeek Harness: pre-step context injection,
+    turn-stopping role-split ingestion, client component for the channel switch.
+10. Machine-specific paths removed; all paths derive from DSH_HOME /
+    MEMORY_SKILL_DB_PATH / MEMORY_MODEL_PATH environment variables.
+11. Optional modules retained from upstream but not wired into the MCP surface:
+    transparent proxy, web crawler, knowledge synthesis, room adapter.
+
+The full Apache License 2.0 text is in the LICENSE file at the repository root.
+================================================================================

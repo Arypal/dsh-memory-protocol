@@ -202,4 +202,10 @@ python tools/rekey.py --dry-run               # 换密钥/修密钥错配
 
 ## License
 
-MIT
+[Apache License 2.0](LICENSE)
+
+本仓库包含基于 [baaai123/solo-memory](https://github.com/baaai123/solo-memory)（PyPI `memory-skill`，Apache-2.0）改造的
+`python/memory_skill` 后端，按 Apache-2.0 的要求保留了许可与归属声明，修改内容见 [NOTICE](NOTICE)。
+
+Copyright 2026 dsh-memory-protocol contributors
+Copyright 2026 Memory Skill Contributors（memory_skill 原始版本）

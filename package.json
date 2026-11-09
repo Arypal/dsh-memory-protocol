@@ -15,6 +15,7 @@
     "./package.json": "./package.json"
   },
   "files": [
+    "NOTICE",
     "lib/index.js",
     "lib/index.d.ts",
     "cordis.patch.yml",
@@ -39,7 +40,7 @@
     "doctor": "node scripts/doctor.mjs",
     "smoke": "node test/smoke-mcp.mjs"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "keywords": [
     "deepseek-harness",
     "dsh",

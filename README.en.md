@@ -94,4 +94,11 @@ This repository ships **no real memories**: `samples/sample.db` is generated fro
 
 ## License
 
-MIT
+[Apache License 2.0](LICENSE)
+
+This repository bundles a modified `python/memory_skill` backend derived from
+[baaai123/solo-memory](https://github.com/baaai123/solo-memory) (PyPI `memory-skill`, Apache-2.0).
+Attribution and the list of modifications are recorded in [NOTICE](NOTICE).
+
+Copyright 2026 dsh-memory-protocol contributors
+Copyright 2026 Memory Skill Contributors (original memory_skill)
