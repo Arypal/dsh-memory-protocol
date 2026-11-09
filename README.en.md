@@ -33,6 +33,8 @@ DSH host
 ## Quick start
 
 ```bash
+git clone https://github.com/Arypal/dsh-memory-protocol.git
+cd dsh-memory-protocol
 pip install -r requirements.txt
 
 # optional but recommended: local embedding model (~1.2 GB, not shipped)

@@ -47,6 +47,14 @@ export MEMORY_MODEL_PATH=/path/to/bge-large-zh-v1.5     # Windows: $env:MEMORY_M
 
 ### 2. 安装
 
+**从 GitHub 拉取**
+
+```bash
+git clone https://github.com/Arypal/dsh-memory-protocol.git
+cd dsh-memory-protocol
+pip install -r requirements.txt
+```
+
 **一键（Windows）**
 
 ```powershell
