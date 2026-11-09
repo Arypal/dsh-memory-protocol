@@ -1,5 +1,10 @@
 # dsh-memory-protocol
 
+![release](https://img.shields.io/github/v/release/Arypal/dsh-memory-protocol)
+![license](https://img.shields.io/github/license/Arypal/dsh-memory-protocol)
+![python](https://img.shields.io/badge/python-3.10%2B-blue)
+![tools](https://img.shields.io/badge/MCP%20tools-21-brightgreen)
+
 DeepSeek Harness（DSH）的长期记忆插件：**事实卡（L1）+ 证据时间线（L2）+ 对话流水（L3）+ 区间摘要（L4）**
 四层记忆、21 个 MCP 工具、每轮自动注入与自动入库、本地嵌入（零 API 成本）、AES-256-GCM 字段加密。
 
