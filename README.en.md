@@ -1,5 +1,10 @@
 # dsh-memory-protocol
 
+![release](https://img.shields.io/github/v/release/Arypal/dsh-memory-protocol)
+![license](https://img.shields.io/github/license/Arypal/dsh-memory-protocol)
+![python](https://img.shields.io/badge/python-3.10%2B-blue)
+![tools](https://img.shields.io/badge/MCP%20tools-21-brightgreen)
+
 Long-term memory plugin for **DeepSeek Harness (DSH)**.
 
 Four memory layers (fact cards L1 + evidence timeline L2 + dialogue stream L3 + episode summaries L4),
